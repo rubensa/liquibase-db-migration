@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.trajano</groupId>
         <artifactId>trajano</artifactId>
-        <version>8</version>
+        <version>10</version>
     </parent>
     <groupId>net.trajano.examples</groupId>
     <artifactId>liquibase-db-migration</artifactId>
@@ -365,6 +365,58 @@
                 </property>
             </activation>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.eclipse.m2e</groupId>
+                            <artifactId>lifecycle-mapping</artifactId>
+                            <version>1.0.0</version>
+                            <configuration>
+                                <lifecycleMappingMetadata>
+                                    <pluginExecutions>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>
+													io.github.divinespear
+												</groupId>
+                                                <artifactId>
+													jpa-schema-maven-plugin
+												</artifactId>
+                                                <versionRange>
+													[0.1.10,)
+												</versionRange>
+                                                <goals>
+                                                    <goal>generate</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore/>
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.liquibase</groupId>
+                                                <artifactId>
+													liquibase-maven-plugin
+												</artifactId>
+                                                <versionRange>
+													[3.1.1,)
+												</versionRange>
+                                                <goals>
+                                                    <goal>changelogSync</goal>
+                                                    <goal>dropAll</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore/>
+                                            </action>
+                                        </pluginExecution>
+                                    </pluginExecutions>
+                                </lifecycleMappingMetadata>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <plugins>
                     <plugin>
                         <artifactId>maven-checkstyle-plugin</artifactId>
